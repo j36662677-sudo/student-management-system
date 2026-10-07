@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+</head>
+
+<body>
+
+<h1>📋 Mark Attendance</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Student:</label>
+    <select name="student" required>
+        <option value="">Select Student</option>
+
+        {% for student in students %}
+            <option value="{{ student.id }}">
+                {{ student.student_id }} - {{ student.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Subject:</label>
+    <select name="subject" required>
+        <option value="">Select Subject</option>
+
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}">
+                {{ subject.subject_code }} - {{ subject.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Date:</label>
+    <input type="date" name="date" required>
+
+    <br><br>
+
+    <label>Status:</label>
+    <select name="status" required>
+        <option value="">Select Status</option>
+        <option value="present">Present</option>
+        <option value="absent">Absent</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">✅ Mark Attendance</button>
+
+</form>
+
+<br>
+
+<a href="/attendance/">← Back to Attendance</a>
+
+</body>
+</html>

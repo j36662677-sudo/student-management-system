@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Subject</title>
+</head>
+
+<body>
+
+<h1>📚 Add Subject</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Subject Code:</label>
+    <input type="text" name="subject_code" required>
+
+    <br><br>
+
+    <label>Subject Name:</label>
+    <input type="text" name="name" required>
+
+    <br><br>
+
+    <label>Department:</label>
+    <select name="department" required>
+        <option value="">Select Department</option>
+
+        {% for department in departments %}
+            <option value="{{ department.id }}">
+                {{ department.name }} ({{ department.code }})
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Teacher:</label>
+    <select name="teacher">
+        <option value="">No Teacher</option>
+
+        {% for teacher in teachers %}
+            <option value="{{ teacher.id }}">
+                {{ teacher.name }}
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Credits:</label>
+    <input type="number" name="credits" value="3" min="1" required>
+
+    <br><br>
+
+    <label>Semester:</label>
+    <input type="number" name="semester" min="1" max="8" required>
+
+    <br><br>
+
+    <button type="submit">➕ Add Subject</button>
+
+</form>
+
+<br>
+
+<a href="/subjects/">← Back to Subjects</a>
+
+</body>
+</html>

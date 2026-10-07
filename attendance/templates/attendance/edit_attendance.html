@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Attendance</title>
+</head>
+
+<body>
+
+<h1>✏️ Edit Attendance</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Student:</label>
+    <select name="student" required>
+
+        {% for student in students %}
+            <option value="{{ student.id }}"
+                {% if student.id == attendance.student.id %}selected{% endif %}>
+                {{ student.student_id }} - {{ student.name }}
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Subject:</label>
+    <select name="subject" required>
+
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}"
+                {% if subject.id == attendance.subject.id %}selected{% endif %}>
+                {{ subject.subject_code }} - {{ subject.name }}
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Date:</label>
+    <input type="date" name="date"
+           value="{{ attendance.date|date:'Y-m-d' }}" required>
+
+    <br><br>
+
+    <label>Status:</label>
+    <select name="status" required>
+
+        <option value="present"
+            {% if attendance.status == 'present' %}selected{% endif %}>
+            Present
+        </option>
+
+        <option value="absent"
+            {% if attendance.status == 'absent' %}selected{% endif %}>
+            Absent
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">💾 Save Changes</button>
+
+</form>
+
+<br>
+
+<a href="/attendance/">← Back to Attendance</a>
+
+</body>
+</html>

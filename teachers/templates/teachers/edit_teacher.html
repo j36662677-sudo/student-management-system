@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Teacher</title>
+</head>
+
+<body>
+
+<h1>✏️ Edit Teacher</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Teacher ID:</label>
+    <input type="text" value="{{ teacher.teacher_id }}" disabled>
+
+    <br><br>
+
+    <label>Name:</label>
+    <input type="text" name="name" value="{{ teacher.name }}" required>
+
+    <br><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ teacher.email }}" required>
+
+    <br><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" value="{{ teacher.phone }}" required>
+
+    <br><br>
+
+    <label>Department:</label>
+
+    <select name="department" required>
+
+        {% for department in departments %}
+            <option value="{{ department.id }}"
+                {% if department.id == teacher.department.id %}selected{% endif %}>
+                {{ department.name }} ({{ department.code }})
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Designation:</label>
+    <input type="text" name="designation"
+           value="{{ teacher.designation }}" required>
+
+    <br><br>
+
+    <button type="submit">💾 Update Teacher</button>
+
+</form>
+
+<br>
+
+<a href="/teachers/">← Back to Teachers</a>
+
+</body>
+
+</html>

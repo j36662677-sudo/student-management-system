@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student</title>
+</head>
+
+<body>
+
+<h1>Edit Student</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Student ID:</label>
+    <input type="text" value="{{ student.student_id }}" disabled>
+
+    <br><br>
+
+    <label>Name:</label>
+    <input type="text" name="name" value="{{ student.name }}" required>
+
+    <br><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ student.email }}" required>
+
+    <br><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" value="{{ student.phone }}" required>
+
+    <br><br>
+
+    <label>Department:</label>
+    <select name="department" required>
+
+        {% for department in departments %}
+            <option value="{{ department.id }}"
+                {% if student.department.id == department.id %}selected{% endif %}>
+                {{ department.name }} ({{ department.code }})
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Year:</label>
+    <input type="number" name="year" value="{{ student.year }}" required>
+
+    <br><br>
+
+    <button type="submit">Update Student</button>
+
+</form>
+
+<br>
+
+<a href="/students/">← Back to Students</a>
+
+</body>
+</html>

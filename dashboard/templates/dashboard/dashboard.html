@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Management System</title>
+
+    <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <h2>🎓 SMS</h2>
+
+        <a href="/">🏠 Dashboard</a>
+        <a href="/students/">🎓 Students</a>
+        <a href="/teachers/">👨‍🏫 Teachers</a>
+        <a href="/students/departments/">🏢 Departments</a>
+        <a href="/subjects/">📚 Subjects</a>
+        <a href="/attendance/">📋 Attendance</a>
+        <a href="/marks/">📊 Marks</a>
+        <a href="/accounts/logout/">🚪 Logout</a>
+    </div>
+
+
+    <div class="main">
+
+        <div class="header">
+
+            <h1>Student Management System</h1>
+
+            <p>Welcome to your dashboard</p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <a href="/students/" class="card">
+                <h3>🎓 Total Students</h3>
+                <p>{{ total_students }}</p>
+            </a>
+
+
+            <a href="/teachers/" class="card">
+                <h3>👨‍🏫 Total Teachers</h3>
+                <p>{{ total_teachers }}</p>
+            </a>
+
+
+            <a href="/subjects/" class="card">
+                <h3>📚 Total Subjects</h3>
+                <p>{{ total_subjects }}</p>
+            </a>
+
+
+            <a href="/students/departments/" class="card">
+                <h3>🏢 Departments</h3>
+                <p>{{ total_departments }}</p>
+            </a>
+
+
+            <a href="/attendance/" class="card">
+                <h3>📋 Attendance</h3>
+                <p>{{ total_attendance }}</p>
+            </a>
+
+
+           <a href="/marks/" class="card">
+               <h3>📊 Marks Records</h3>
+               <p>{{ total_marks }}</p>
+           </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+<body>
+
+<h1>Students</h1>
+
+<a href="/students/add/">➕ Add Student</a>
+
+<br><br>
+
+<a href="/dashboard/">← Back to Dashboard</a>
+<br><br>
+
+<form method="GET">
+    <input type="text" name="q" placeholder="Search student...">
+    <button type="submit">🔍 Search</button>
+</form>
+
+<br>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Year</th>
+        <th>Action</th>
+    </tr>
+
+    {% for student in students %}
+    <tr>
+        <td>{{ student.student_id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.department }}</td>
+        <td>{{ student.year }}</td>
+
+        <td>
+            <a href="/students/view/{{ student.id }}/">👁️ View</a>
+
+            <a href="/students/edit/{{ student.id }}/">✏️ Edit</a>
+
+            <a href="/students/delete/{{ student.id }}/"
+               onclick="return confirm('Are you sure you want to delete this student?');">
+               🗑️ Delete
+             </a>
+        </td>  
+    </tr>
+
+    {% empty %}
+    <tr>
+        <td colspan="5">No students found.</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

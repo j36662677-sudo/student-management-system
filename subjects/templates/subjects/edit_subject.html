@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Subject</title>
+</head>
+
+<body>
+
+<h1>✏️ Edit Subject</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Subject Code:</label>
+    <input type="text" name="subject_code"
+           value="{{ subject.subject_code }}" required>
+
+    <br><br>
+
+    <label>Subject Name:</label>
+    <input type="text" name="name"
+           value="{{ subject.name }}" required>
+
+    <br><br>
+
+    <label>Department:</label>
+    <select name="department" required>
+
+        {% for department in departments %}
+            <option value="{{ department.id }}"
+                {% if department.id == subject.department.id %}selected{% endif %}>
+                {{ department.name }} ({{ department.code }})
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Teacher:</label>
+    <select name="teacher">
+
+        <option value="">No Teacher</option>
+
+        {% for teacher in teachers %}
+            <option value="{{ teacher.id }}"
+                {% if subject.teacher and teacher.id == subject.teacher.id %}selected{% endif %}>
+                {{ teacher.name }}
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Credits:</label>
+    <input type="number" name="credits"
+           value="{{ subject.credits }}" min="1" required>
+
+    <br><br>
+
+    <label>Semester:</label>
+    <input type="number" name="semester"
+           value="{{ subject.semester }}" min="1" max="8" required>
+
+    <br><br>
+
+    <button type="submit">💾 Save Changes</button>
+
+</form>
+
+<br>
+
+<a href="/subjects/">← Back to Subjects</a>
+
+</body>
+</html>

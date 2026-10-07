@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Mark</title>
+</head>
+
+<body>
+
+<h1>✏️ Edit Mark</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Student:</label>
+    <select name="student" required>
+        {% for student in students %}
+            <option value="{{ student.id }}"
+                {% if student.id == mark.student.id %}selected{% endif %}>
+                {{ student.student_id }} - {{ student.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Subject:</label>
+    <select name="subject" required>
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}"
+                {% if subject.id == mark.subject.id %}selected{% endif %}>
+                {{ subject.subject_code }} - {{ subject.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Internal Mark:</label>
+    <input type="number" name="internal_mark"
+           value="{{ mark.internal_mark }}"
+           min="0" max="40" required>
+
+    <br><br>
+
+    <label>Exam Mark:</label>
+    <input type="number" name="exam_mark"
+           value="{{ mark.exam_mark }}"
+           min="0" max="60" required>
+
+    <br><br>
+
+    <button type="submit">💾 Save Changes</button>
+
+</form>
+
+<br>
+
+<a href="/marks/">← Back to Marks</a>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Department</title>
+</head>
+
+<body>
+
+<h1>🏢 Add Department</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Department Name:</label>
+    <input type="text" name="name" required>
+
+    <br><br>
+
+    <label>Department Code:</label>
+    <input type="text" name="code" required>
+
+    <br><br>
+
+    <button type="submit">➕ Add Department</button>
+
+</form>
+
+<br>
+
+<a href="/students/departments/">← Back to Departments</a>
+
+</body>
+
+</html>
